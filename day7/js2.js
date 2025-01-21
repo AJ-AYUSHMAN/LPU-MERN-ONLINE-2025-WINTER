@@ -55,7 +55,7 @@
 // // // 1. MEMORY ALLOCATION (line by line) (Only checks for variable and function DECLARATIONs)
 // // // 2. Execution (++) (line by line) (Executes the logic)
 
-// // TEMPORAL DEAD ZONE: LET variable will come with name "city"
+// // TEMPORAL DEAD ZONE (TDZ): LET variable will come with name "city"
 // // TEMPORAL DEAD ZONE: LET variable will come with name "country"
 // // TEMPORAL DEAD ZONE variables can be accessed before initialization
 
@@ -168,25 +168,454 @@
 
 // -----------------------------------------------------
 
-const ans1 = 30 - 10;
-console.log(ans1); // --> 20
+// const ans1 = 30 - 10;
+// console.log(ans1); // --> 20
 
-const ans2 = 10 - "Hello";
-console.log(ans2); // --> NaN
+// const ans2 = 10 - "Hello";
+// console.log(ans2); // --> NaN
 
-const ans3 = "Hello" - 10;
-console.log(ans3); // --> NaN
+// const ans3 = "Hello" - 10;
+// console.log(ans3); // --> NaN
 
-const ans4 = "Hello" - " All!";
-console.log(ans4); // --> NaN
+// const ans4 = "Hello" - " All!";
+// console.log(ans4); // --> NaN
 
-const ans5 = "90" - "10"; // --> 90 - 10
-console.log(ans5); // 80
+// const ans5 = "90" - "10"; // --> 90 - 10
+// console.log(ans5); // 80
 
-const ans6 = 20 - "10"; // --> 20 - 10
-console.log(ans6); // 10
+// const ans6 = 20 - "10"; // --> 20 - 10
+// console.log(ans6); // 10
 
-const ans7 = 50 - 20;
-console.log(ans7); // 30
+// const ans7 = 50 - 20;
+// console.log(ans7); // 30
 
 // -----------------------------------------------------
+
+// LOOSE Equality --> checks with type coercion (PRIMITIVES)
+
+// const city = "Delhi";
+// const country = "INDIA";
+
+// if (city == country) {
+//     console.log("Yes");
+// } else {
+//     console.log("No");
+// }
+
+// const nnS = "99";
+// const nN = 99;
+
+// if (nnS == nN) {
+//     console.log("Yes");
+// } else {
+//     console.log("No");
+// }
+
+// const nnS = false;
+// const nN = 0;
+
+// if (nnS == nN) {
+//     console.log("Yes 0 is equal to false");
+// } else {
+//     console.log("No");
+// }
+
+// FALSE VALUES: false, [], {}, 0, ""
+// TRUTH VALUES: true, ['a'], {a:'c'}, +1, -1, "a"
+
+// if (2 == true) {
+//     console.log("Yes");
+// }
+
+// -----------------------------------------------------------------------
+// const nnS = "99";
+// const nN = 99;
+// const yes = true;
+// const no = false;
+// const one = 1;
+// const zero = 0;
+
+// if (nnS === nN) {
+//     console.log("nnS nN");
+// } else {
+//     console.log("no");
+// }
+
+// if (yes === one) {
+//     console.log("one yes");
+// } else {
+//     console.log("no");
+// }
+
+// if (no === zero) {
+//     console.log("one yes");
+// } else {
+//     console.log("no");
+// }
+
+// STRICT EQUALITY (Primitives) --> If both have same data type, then compares the values
+//                              --> if values are same then true else false
+
+// ---------------------------------------------------------------------------------
+
+// ES6 - Template Literals
+
+// const city = "Delhi";
+// const country = "India";
+
+// const greetings1 = "Namaste!";
+
+// const ans1 = greetings1 + " " + city + ", " + country;
+
+// const ans2 = `${greetings1} ${city}, ${country}`;
+
+// console.log(ans1);
+// console.log(ans2);
+
+// -----------------------------------------------------------------------------------
+// const likes = 22;
+// const hearts = 34;
+
+// const profileName = "Harshal";
+// const sentence = "profile has ";
+// const lastWord = "engagements";
+
+// const ans = profileName + "'s " + sentence + likes + hearts + " " + lastWord;
+// console.log(ans);
+// const ans2 = `${profileName}'s ${sentence}${likes + hearts} ${lastWord}`;
+// console.log(ans2);
+
+// -------------------------------------------------------------------------------
+
+// if industry standards says, this should be done like this
+// if industry standards says, this MUST be done like this
+
+// -------------------------------------------------------------------------------------
+
+// OBJECT + Function
+
+// ---------------------------------------------------------------------------------------
+
+// 1. FUNCTION DECLARATION --> allows to make the two functions with same name 🚩
+//                         --> it can be invoked before declaration 🚩
+
+// -------------------------------
+
+// function greetings() {
+//     // logic
+//     console.log("hello all!");
+// }
+
+// greetings(); // function call or function invocation
+
+// ---------------------------------
+// Memory allocation and execution
+
+// greetings(); // function call or function invocation
+
+// function greetings() {
+//     // logic
+//     console.log("hello all!");
+// }
+
+// // ................250 lines................
+
+// function greetings() {
+//     // logic
+//     console.log("hello again!");
+// }
+
+// INDUSTRY says: this is an abrupt behavior, other languages don't work like that, so people can get confused
+
+// ------------------------------------------------------------------------------------------------
+
+// FUNCTION ASSIGNMENT (*)
+// -------------------------
+// const temp = function greetings() {
+//     console.log("Hello all again!");
+// };
+
+// temp();
+
+// ----------------------------
+
+// IT CANNOT BE ACCESSED BEFORE INITIALIZATION (this is how CONST works!)
+// temp();
+
+// const temp = function greetings() {
+//     console.log("Hello all again!");
+// };
+
+// --------------------------
+
+// RE-DECLARATION NOT allowed (this is how CONST works!)
+
+// const temp = function greetings() {
+//     console.log("Hello all again!");
+// };
+// const temp = function greetings() {
+//     console.log("Hello all again and again!");
+// };
+
+// -----------------------------------------------------------------------------------------
+
+// anonymous FUNCTION ASSIGNMENT (GIVES same benefits as earlier with shorter syntax)
+// const temp = function () {
+//     console.log("Hello all again!");
+// };
+
+// temp();
+
+// -------------------------------------------------------------------------------------------
+
+// arrow FUNCTION ASSIGNMENT (GIVES same benefits as earlier with shorter syntax)
+// const temp = () => {
+//     console.log("Hello all again!");
+// };
+
+// temp();
+
+// --------------------------------------------------------------------------------------------
+
+// functions are used to group the logic
+// function printDataOnScreen(likes, hearts, name) {
+//     // PARAMETERs
+//     const result = `${name}'s engagements on the page are ${likes + hearts}`;
+//     console.log(result);
+// }
+
+// const printDataOnScreen = function printDataOnScreen(likes, hearts, name) {
+//     // PARAMETERs
+//     const result = `* ${name}'s engagements on the page are ${likes + hearts}`;
+//     console.log(result);
+// };
+
+// const printDataOnScreen = function (likes, hearts, name) {
+//     // PARAMETERs
+//     const result = `** ${name}'s engagements on the page are ${likes + hearts}`;
+//     console.log(result);
+// };
+
+// const printDataOnScreen = (likes, hearts, name) => {
+//     // PARAMETERs
+//     const result = `*** ${name}'s engagements on the page are ${likes + hearts}`;
+//     console.log(result);
+// };
+
+// printDataOnScreen(33, 44, "Niteesh"); // Arguments
+// printDataOnScreen(220, 100, "Aashrith"); // Arguments
+
+// -------------------------------------------------------------------------
+
+// BLOCK SCOPE & FUNCTION SCOPE
+
+// ------------------
+// const greet = () => {
+//     var x = 10;
+
+//     console.log(x);
+// };
+
+// greet();
+
+// ------------------
+// SCOPE of var is "FUNCTION scoped"
+// const greet = () => {
+//     if (true) {
+//         var x = 12;
+//     }
+
+//     console.log(x);
+// };
+
+// greet();
+
+// ------------------
+// // SCOPE of LET & CONST is "BLOCK scoped" --> {}
+// const greet = () => {
+//     if (true) {
+//         let x = 12;
+//     }
+//     console.log(x);
+// };
+
+// greet();
+
+// ------------------ ------------------------- -----------------------------
+// function sum(a, b) {
+//     return a + b;
+// }
+
+// const ans = sum(10, 20);
+// console.log(ans);
+
+// // --------------- 200 lines --------------
+// function sum(a, b) {
+//     const result = a + b;
+//     console.log(result);
+// }
+
+// ------------------ ------------------------- -----------------------------
+// const sum = (a, b) => {
+//     return a + b;
+// };
+
+// const ans = sum(10, 20);
+// console.log(ans);
+
+// // --------------- 200 lines --------------
+// const sum = (a, b) => {
+//     const result = a + b;
+//     console.log(result);
+// };
+
+// ----------------------------------------------------------------------------
+
+// const number = prompt("Please enter a number between 1 to 10") - 0;
+
+// if (number % 2 === 0) {
+//     console.log("Number is even");
+// } else if (number % 3 === 0) {
+//     console.log("Number is divisible by 3");
+// } else {
+//     console.log("1, 5, 7, 10");
+// }
+
+// switch (number) {
+//     case 1: {
+//         console.log("ONE");
+//         break;
+//     }
+//     case 2: {
+//         console.log("TWO");
+//         break;
+//     }
+//     case 3: {
+//         console.log("THREE");
+//         break;
+//     }
+//     default: {
+//         console.log("NOT 1,2,3");
+//     }
+// }
+
+// ---------------------------------------------------------------------------
+
+// const a = "1.1a";
+// const b = "1.1b123";
+// const c = "1";
+// const d = "1.1";
+
+// const na = Number(a); --> NaN
+// const nb = Number(b); --> NaN
+// const nc = Number(c); --> 1
+// const nd = Number(d); --> 1.1
+
+// console.log(na, nb, nc, nd);
+
+// ---------------------------------------------------------------------------
+
+// const a = "1.1a";
+// const b = "2.1b123";
+// const c = "3";
+// const d = "4.1";
+// const e = "324r345";
+
+// const na = parseInt(a); // --> 1
+// const nb = parseInt(b); // --> 2
+// const nc = parseInt(c); // --> 3
+// const nd = parseInt(d); // --> 4
+// const ne = parseInt(e); // --> 324
+
+// console.log(na, nb, nc, nd, ne);
+
+// -----------------------------------------------------------------------------
+// const a = "1.1a";
+// const b = "2.1b123";
+// const c = "3";
+// const d = "4.1";
+// const e = "324r345";
+
+// const na = parseFloat(a); // --> 1.1
+// const nb = parseFloat(b); // --> 2.1
+// const nc = parseFloat(c); // --> 3
+// const nd = parseFloat(d); // --> 4.1
+// const ne = parseFloat(e); // --> 324
+
+// console.log(na, nb, nc, nd, ne);
+
+// -----------------------------------------------------------------------------
+
+// OBJECT is a key value pair store
+// keys are always strings
+
+// const student = {
+//     name: "Likhilesh",
+//     city: "Delhi",
+//     country: "India",
+// };
+
+// console.log(student);
+// console.log(student.name);
+
+// student.city = "Mumbai"; // CHANGE the value
+// console.log(student);
+
+// console.log(student.stack); // if a key is not present then the value is undefined
+
+// student.stack = "MERN"; // ADDs a new key value pair
+
+// console.log(student);
+// console.log(student.stack); // MERN
+
+// student = { city: "Kanpur" }; // RE-ASSIGNMENT OF the variable is not allowed in const
+// console.log(student);
+
+// ----------------------------------------------------------------------------------
+
+// Loose equality check for two objects are equal will also check for their reference(address) to be equal
+
+const student1 = {
+    name: "Ajay",
+    city: "Delhi",
+};
+
+const student2 = {
+    name: "Ajay",
+    city: "Delhi",
+};
+
+console.log(student1);
+console.log(student2);
+
+if (student1 == student2) {
+    console.log("Yes both objects are same");
+} else {
+    console.log("No both objects are different");
+}
+
+const student3 = {
+    name: "Ajay",
+    city: "Delhi",
+};
+
+const student4 = student3;
+
+console.log(student3);
+console.log(student4);
+
+if (student3 == student4) {
+    console.log("Yes both objects are same");
+} else {
+    console.log("No both objects are different");
+}
+
+// --------------------------------
+
+student1.name = "New Name 1";
+student3.name = "New Name 2";
+
+console.log(student1);
+console.log(student2);
+console.log(student3);
+console.log(student4);
