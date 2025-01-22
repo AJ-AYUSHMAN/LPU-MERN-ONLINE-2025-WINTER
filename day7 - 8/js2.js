@@ -575,47 +575,255 @@
 
 // Loose equality check for two objects are equal will also check for their reference(address) to be equal
 
-const student1 = {
-    name: "Ajay",
-    city: "Delhi",
+// const student1 = {
+//     name: "Ajay",
+//     city: "Delhi",
+// };
+
+// const student2 = {
+//     name: "Ajay",
+//     city: "Delhi",
+// };
+
+// console.log(student1);
+// console.log(student2);
+
+// if (student1 == student2) {
+//     console.log("Yes both objects are same");
+// } else {
+//     console.log("No both objects are different");
+// }
+
+// const student3 = {
+//     name: "Ajay",
+//     city: "Delhi",
+// };
+
+// const student4 = student3;
+
+// console.log(student3);
+// console.log(student4);
+
+// if (student3 == student4) {
+//     console.log("Yes both objects are same");
+// } else {
+//     console.log("No both objects are different");
+// }
+
+// // ---------- BY DEFAULT: Copy is shallow copy in JS Non-Primitives ----------------------
+
+// student1.name = "New Name 1";
+// student3.name = "New Name 2";
+
+// console.log(student1);
+// console.log(student2);
+// console.log(student3);
+// console.log(student4);
+
+// ------------------------------------------------------------------------------------
+
+// const car = {
+//     engine: "V8", // property
+//     model: "E6", // property
+//     brand: "Audi", // property
+// };
+
+// I want to change the model from "E6" to "Square"
+
+// I want to add a mileage:25 property
+
+// I want to make a new car that has same specifications but has engine: 'V6'
+
+// From the new car, I also want to remove the model property.
+
+// -------------------------------------------------------------------------------------------
+
+// const car1 = {
+//     engine: "V8",
+//     model: "E6",
+//     brand: "Audi",
+// };
+
+// car1.model = "Square";
+// car1.mileage = 25;
+
+// // const car2 = car1; //  SHALLOW COPY
+// const car2 = { ...car1 }; // ... --> SPREAD OPERATOR (IT IS NOT DEEP COPY)
+// //                                   (We are creating a new object and putting old properties and methods in it)
+
+// car2.engine = "V6";
+// delete car2.model;
+
+// console.log("Updated car1:", car1);
+// console.log("Car2:", car2);
+
+// ------------------------------------------------------------------
+
+// var a = 10;
+
+// var b = a;
+
+// b = 11;
+
+// console.log(a, b);
+
+// --------------------------------------
+// PRIMITIVES ARE IMMUTABLE IN JSON
+// https://developer.mozilla.org/en-US/docs/Glossary/Mutable
+
+// let a = "hello";
+// a = "hEllo";
+// console.log(a);
+
+// ---------------------------------- -------------------------------------------
+
+// Example of SPREAD OPERATOR :: IT IS NOT DEEP COPY
+
+// const student1 = {
+//     name: "A-Rajat",
+//     city: "Jaipur",
+//     university: "ABCD",
+//     college: "MNOP",
+//     details: {
+//         bloodGroup: "O+",
+//         placeOfBirth: "Jaipur",
+//     },
+// };
+
+// const student2 = { ...student1 };
+// student2.name = "B-Rohan";
+// student2.details.bloodGroup = "A+";
+
+// console.log(student1);
+// console.log(student2);
+
+// ---------------------------------- -------------------------------------------
+
+// const car1 = {
+//     engine: "V8",
+//     model: "E6",
+//     brand: "Audi",
+// };
+
+// console.log(car1);
+
+// const key = prompt("Enter Key:");
+// const value = prompt("Enter Value:");
+
+// // car1.engine = value; // using static key
+// car1[key] = value; // using dynamic key
+
+// console.log(car1);
+
+// ------------------------------------------------------------------------------
+
+// ARRAYS
+
+// const arrObj = {
+//     0: "Raj",
+//     1: "Om",
+//     2: "Shri",
+// };
+
+// console.log(arrObj);
+
+// const arrArr = ["Raj", "Om", "Shri"];
+
+// console.log(arrArr);
+
+// ----------------------------------------------------------------------------
+
+// const arr = ["Raj", "Om", "Shri"];
+
+// arr[2] = "Hariom";
+
+// console.log(arr);
+
+// arr.push("Hritik");
+
+// console.log(arr);
+
+// ------------------
+// NEVER use delete keyword in arrays (IT CREATES HOLES)
+
+// delete arr[1];
+
+// instead use SPLICE / POP / SHIFT
+
+// arr.splice(1, 1);
+
+// console.log(arr);
+
+// ------------------
+// NEVER add a value in array by index (IT CREATES HOLES)
+
+// arr[3] = "likhilesh";
+// console.log(arr);
+
+// arr[10] = "likhilesh"; // (If index > curr/old array length, then it will create HOLES)
+// console.log(arr);
+
+// ------------------
+
+// --------------------------------------------------------------------------------------------------------
+// const arr = ["Mango", "Apple", "Papaya", "Grapes"];
+// const obj = {
+//     0: "Mango",
+//     1: "Apple",
+//     2: "Papaya",
+//     3: "Grapes",
+// };
+
+// HOW DO YOU check the array length?
+// const len = arr.length;
+// console.log(len);
+
+// HOW DO YOU check if the given thing is Array or object?
+// console.log(typeof arr);
+// console.log(typeof obj);
+// console.log(Array.isArray(arr));
+// console.log(Array.isArray(obj));
+
+// HOW to convert array to string?
+// console.log(arr.toString()); // --> join by comma
+// console.log(arr.join("-")); // --> join by -
+
+// ---------------------------------------------------------------------------------------------------------
+
+// LOOPs
+const arr = ["Mango", "Apple", "Papaya", "Grapes"];
+const obj = {
+    calm: "Deer",
+    wild: "Lion",
+    fast: "Horse",
+    domestic: "Dog",
 };
+// // GET all the keys from object --> Object.keys(objectName) --> returns array
+// console.log(Object.keys(obj));
 
-const student2 = {
-    name: "Ajay",
-    city: "Delhi",
-};
+// // GET all the value from object --> Object.values(objectName) --> returns array
+// console.log(Object.values(obj));
 
-console.log(student1);
-console.log(student2);
+// // GET all the key-value pairs from object --> Object.entries(objectName) --> returns array of array
+// console.log(Object.entries(obj));
 
-if (student1 == student2) {
-    console.log("Yes both objects are same");
-} else {
-    console.log("No both objects are different");
-}
+// for (let i = 0; i < arr.length; i++) {
+//     console.log("FOR LOOP on array:", arr[i]);
+// }
 
-const student3 = {
-    name: "Ajay",
-    city: "Delhi",
-};
+// for (let i of arr) {
+//     // only works for iterables (Array, List, ...)
+//     console.log("FOR LOOP on array:", i);
+// }
 
-const student4 = student3;
+// for (let i in arr) {
+//     console.log("FOR LOOP on array:", i);
+// }
 
-console.log(student3);
-console.log(student4);
+// for (let i in obj) {
+//     console.log("FOR LOOP on array:", i);
+// }
 
-if (student3 == student4) {
-    console.log("Yes both objects are same");
-} else {
-    console.log("No both objects are different");
-}
+// " HOME WORK " --> WHILE loop and DO WHILE loop
 
-// --------------------------------
-
-student1.name = "New Name 1";
-student3.name = "New Name 2";
-
-console.log(student1);
-console.log(student2);
-console.log(student3);
-console.log(student4);
+// ---------------------------------------------------------------------------------------------------------
