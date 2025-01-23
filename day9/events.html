@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="./events.css">
+</head>
+
+<body onclick="handleGlobalClick(event)">
+    <h2>Events</h2>
+    <p>Hello!</p>
+    <p>Again!</p>
+    <div id="secret-container">
+        <p>
+            Secret Text!
+        </p>
+    </div>
+    <section onclick="sectionClick()">
+        <button onclick="handleButtonClick()">Show</button>
+    </section>
+    <!-- <p onmouseleave="handleMouseLeave()" onmouseenter="handleMouseEnter()">GM!</p> -->
+    <script src="./events.js"></script>
+</body>
+
+</html>

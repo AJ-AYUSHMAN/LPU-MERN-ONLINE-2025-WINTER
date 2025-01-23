@@ -1,0 +1,15 @@
+p {
+    padding: 1rem;
+    font-size: 2rem;
+    background-color: antiquewhite;
+}
+
+button {
+    padding: 0.7rem 1rem;
+    border: 1px solid lightgrey;
+    background-color: goldenrod;
+}
+
+div {
+    display: none;
+}

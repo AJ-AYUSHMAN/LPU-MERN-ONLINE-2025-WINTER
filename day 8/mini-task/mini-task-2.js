@@ -37,18 +37,37 @@ const events = [
     },
 ];
 
-// const cards = document.getElementsByClassName("card");
-// for (let i = 0; i < events.length; i++) {
-//     const card = cards[i + 1];
-//     const heading = card.getElementsByTagName("h2");
-//     heading[0].innerText = events[i].title;
-//     const para = card.getElementsByTagName("p");
-//     para[0].innerText = events[i].description;
-// }
+// ROOT ELEMENT to insert CARD
+const parent = document.getElementById("cards-container");
 
-const headings = document.getElementsByTagName("h2");
-const paras = document.getElementsByTagName("p");
 for (let i = 0; i < events.length; i++) {
-    headings[i + 1].innerText = events[i].title;
-    paras[i + 1].innerText = events[i].description;
+    // CREATE A CARD
+    const newCard = document.createElement("div"); // <div></div>
+    newCard.className = "card"; //  <div class='card'></div>
+
+    // CREATE h2
+    const newH2 = document.createElement("h2"); // <h2></h2>
+    newH2.innerText = events[i].title; // <h2>title</h2>
+    // and PUT h2 inside card
+    newCard.appendChild(newH2); // <div class='card'><h2>title</h2></div>
+
+    // CREATE p
+    const newP = document.createElement("p"); // <p></p>
+    newP.innerText = events[i].description; // <p>description</p>
+    // and PUT p inside card
+    newCard.appendChild(newP); // <div class='card'><h2>title</h2><p>description</p></div>
+
+    // PUT the card inside parent (#cards-container)
+    parent.appendChild(newCard);
 }
+
+// REMOVE
+// const child = document.getElementsByClassName("card");
+// parent.removeChild(child[0]);
+
+const handleClick = () => {
+    const card = document.getElementsByClassName("card");
+    const newP = document.createElement("p");
+    newP.innerText = "More info....";
+    card[0].appendChild(newP);
+};
