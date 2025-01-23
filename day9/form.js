@@ -49,3 +49,17 @@ const handleSelectProfession = (e) => {
         }
     }
 };
+
+// const handleKeyDown = (e) => {
+//     console.log("DOWN:", e.target.value);
+// };
+
+// const handleKeyUp = (e) => {
+//     console.log("UP:", e.target.value);
+// };
+
+const handleNameChange = (e) => {
+    const nameValue = e.target.value;
+    const heading = document.querySelector("h2");
+    heading.innerHTML = `Hello <u>${nameValue}</u> !`;
+};

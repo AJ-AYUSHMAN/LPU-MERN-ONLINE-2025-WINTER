@@ -10,9 +10,12 @@
 
 <body>
     <form onsubmit="handleSubmit(event)" action="./thankyou.html" method="GET">
+        <h2>Hello Guest!</h2>
         <div>
             <label>Name:</label>
-            <input type=text name="name" placeholder="Please type here..." required>
+            <input type=text name="name" placeholder="Please type here..." required onchange="handleNameChange(event)">
+            <!-- onkeydown="handleKeyDown(event)"
+                onkeyup="handleKeyUp(event)"  -->
         </div>
         <div>
             <label>Email:</label>
