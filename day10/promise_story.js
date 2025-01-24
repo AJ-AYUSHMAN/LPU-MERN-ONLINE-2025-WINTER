@@ -41,21 +41,21 @@ getUserDetails(deliverItem);
 
 // ----------------------------------------------------------------------
 // PROMISES
-// function getUserDetails(cb) {
-//     if (Math.random() > 0.5) {
-//         cb();
-//     }
+function getUserDetails(cb) {
+    if (Math.random() > 0.5) {
+        cb();
+    }
 
-//     // return PROMISE
-// }
+    // return PROMISE
+}
 
-// function deliverItem(productId, address) {
-//     console.log("Product Delivered", productId, address);
-// }
+function deliverItem(productId, address) {
+    console.log("Product Delivered", productId, address);
+}
 
-// const pr = getUserDetails();
-// pr.then(deliverItem);
-// pr.catch(() => {});
+const pr = getUserDetails();
+pr.then(deliverItem);
+pr.catch(() => {});
 // getUserDetails takes variable amount of time :: you should PROMISE me that you will UPDATE ME when DONE
 // if everything happens in expected way THEN i will call deliverItem
 // otherwise I will do something else (send a notification of error to client)
