@@ -1,0 +1,16 @@
+h2 {
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    font-size: 2.5rem;
+    color: red;
+    background-color: yellow;
+    transition: all 300ms ease-in-out;
+}
+
+body {
+    min-height: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
