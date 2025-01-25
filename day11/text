@@ -1,0 +1,19 @@
+const showProducts = (obj) => {
+    console.log("A : Inside showProducts");
+};
+
+console.log("B : START");
+const getData = async () => {
+    console.log("C : Inside GET DATA");
+    const res = await fetch("https://dummyjson.com/products");
+    console.log("D : got response...");
+    const dataObj = await res.json();
+    console.log("E : got DATAObj...");
+    showProducts(dataObj);
+    console.log("F : DONE with showProducts");
+};
+console.log("G : CALLING getData()");
+let = 0;
+
+getData();
+console.log("H : END");
