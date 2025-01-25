@@ -1,5 +1,5 @@
 const cardsContainer = document.getElementById("root");
-const API_KEY = "";
+const API_KEY = "4334cf89c2msh8bb2842ca1bc925p14d540jsn5476cbded4a8";
 
 const showYoutubeCards = (data) => {
     const { videos } = data;
