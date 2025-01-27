@@ -54,18 +54,164 @@
 // };
 
 // const obj1 = creator("Likhilesh", "This is dummy text");
-// console.log("🟡 : obj1:", obj1);
+// console.log(obj1);
 
 // const obj2 = creator("Hemanth", "This is dummy text");
-// console.log("🟡 : obj1:", obj2);
+// console.log(obj2);
+
+// const obj3 = {
+//     studentName: "Abhishek",
+//     description: "This is again some description...",
+//     greetings: `Hello Abhishek! How are you?`,
+// };
+// console.log(obj3);
 
 // --------------------------------------------------------------
+
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// // const newTitle = React.createElement("h2", {}, "Hello from REAL React!");
+// // console.log("newTitle", newTitle);
+
+// const anotherTitle = {
+//     $$typeof: Symbol.for("react.element"),
+//     type: "h2",
+//     key: null,
+//     ref: null,
+//     props: {
+//         children: "Hello from REAL React!",
+//     },
+//     _owner: null,
+//     _store: {},
+// };
+
+// console.log(anotherTitle);
+
+// root.render(anotherTitle);
+
+// ---------------------------------------------------------
+
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// const newTitle = {
+//     $$typeof: Symbol.for("react.element"),
+//     type: "h2",
+//     key: null,
+//     ref: null,
+//     props: {
+//         children: "Hello from REAL React!",
+//     },
+//     _owner: null,
+//     _store: {},
+// };
+
+// const newPara = {
+//     $$typeof: Symbol.for("react.element"),
+//     type: "p",
+//     key: null,
+//     ref: null,
+//     props: {
+//         children: "Lorem text for dummy ...",
+//     },
+//     _owner: null,
+//     _store: {},
+// };
+
+// const container = {
+//     $$typeof: Symbol.for("react.element"),
+//     type: "div",
+//     key: null,
+//     ref: null,
+//     props: {
+//         children: [newTitle, newPara],
+//     },
+//     _owner: null,
+//     _store: {},
+// };
+
+// root.render(container);
+
+// ---------------------------------- PROPERTIES OBJECT -------------------------------------------
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// const styleObj = {
+//     fontSize: "3rem", // that the key should be in camelcase and value should be in double quotes
+//     margin: "3rem",
+// };
+
+// const title = React.createElement(
+//     "h2",
+//     {
+//         className: "text-style-type-1",
+//         id: "something",
+//         style: styleObj,
+//         title: "company name",
+//     },
+//     "Hello from REACT!"
+// );
+
+// console.log("🟡 : title:", title);
+
+// root.render(title);
+
+// ---------------------------------- JSX -------------------------------------------
+
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// const styleObj = {
+//     fontSize: "3rem", // that the key should be in camelcase and value should be in double quotes
+//     margin: "3rem",
+// };
+
+// // const title = React.createElement(
+// //     "h2",
+// //     {
+// //         className: "text-style-type-1",
+// //         id: "something",
+// //         style: styleObj,
+// //         title: "company name",
+// //     },
+// //     "Hello from REACT!"
+// // );
+
+// // JSX --> Javascript syntax extension :: It is not Javascript // it is extension of Javascript
+// //                                     :: Don't call it HTML inside JS
+// // "class" is a keyword in Javascript so we will use "className" for giving classes to elements
+// const title = (
+//     <h2 className="text-style-type-1" id="something" title="company name">
+//         Hello from REACT!
+//     </h2>
+// );
+
+// // JSX --> is converted into javascript code by TRANSPILER, for example, BABEL
+
+// // Browser does not understand JSX !
+// // Browser only understand Javascript !
+
+// console.log("🟡 : title:", title);
+
+// root.render(title);
+
+// ------------------------------  USE JSX for UI ----------------------------------------
 
 const parent = document.getElementById("dom-root");
 const root = ReactDOM.createRoot(parent);
 
-const newTitle = React.createElement("h2", {}, "Hello from REAL React!");
+const container = (
+    <div className="card">
+        <div>
+            <h2>Hello</h2>
+            <p>Description</p>
+        </div>
+        <img
+            className="image"
+            src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+        ></img>
+    </div>
+);
 
-console.log("🟡 : newTitle:", newTitle);
-
-root.render(newTitle);
+root.render(container);

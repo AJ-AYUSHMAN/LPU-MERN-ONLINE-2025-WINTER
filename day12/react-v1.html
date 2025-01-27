@@ -9,12 +9,17 @@
 </head>
 
 <body>
-    <h1>Hello to REACT!</h1>
+    <ol>
+        <li>Add script tag from bable : https://babeljs.io/setup/#installation</li>
+        <li>in the script tag of your javascript code file mention <i>type='text/babel'</i></li>
+    </ol>
     <div id="dom-root"></div>
 
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="./react-v1.js"></script>
+    <script src="./react-v1.js" type="text/babel"></script>
 </body>
 
 </html>
