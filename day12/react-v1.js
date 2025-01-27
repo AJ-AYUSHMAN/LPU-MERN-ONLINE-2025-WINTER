@@ -196,22 +196,167 @@
 
 // root.render(title);
 
-// ------------------------------  USE JSX for UI ----------------------------------------
+// ------------------------------  USE JSX for UI (REACT ELEMENT) ----------------------------------------
 
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// const card = (
+//     <div className="card">
+//         <div>
+//             <h3>Hello Likhilesh!</h3>
+//             <p>Description</p>
+//         </div>
+//         <img
+//             className="image"
+//             src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+//         ></img>
+//     </div>
+// );
+
+// // HERE, "card" is called a REACT ELEMENT
+
+// // I will make a container for multiple cards
+// // const container = React.createElement("div", {}, [card, card, card, card]);
+// const container = (
+//     <div>
+//         {card}
+//         {card}
+//         {card}
+//         {card}
+//     </div>
+// );
+// // curly brackets will be used to write any Javascript Expression inside JSX
+
+// root.render(container);
+
+// ------------------ SOME basics -----------------
+// const city1 = "Delhi"; // REACT ELEMENT
+
+// const city2 = () => {
+//     return "Mumbai";
+// }; // REACT Component (JS Function :: returns JSX)
+
+// console.log(city1); // element is written by its name
+// console.log(city2()); // function is invoken, that is, paranthesis after name
+// ------------------ ------------- -----------------
+
+// ------------------------------  USE JSX for UI (REACT Component) ----------------------------------------
+
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// const Card = (userName) => {
+//     return (
+//         <div className="card">
+//             <div>
+//                 <h3>Hello {userName}!</h3>
+//                 <p>Description</p>
+//             </div>
+//             <img
+//                 className="image"
+//                 src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+//             ></img>
+//         </div>
+//     );
+// };
+
+// // HERE, "Card" is called a REACT Component --> Component help you to insert logic in your UI code
+// // REACT Component name should be in PascalCase --> camelCase rules + FirstLetterCapital
+
+// // I will make a container for multiple cards
+// const container = React.createElement("div", {}, [
+//     Card("Likhilesh"),
+//     Card("Hemant"),
+//     Card("Himanshu"),
+//     Card("Abhishek"),
+// ]);
+// // const container = (
+// //     <div>
+// //         {Card}
+// //         {Card}
+// //         {Card}
+// //         {Card}
+// //     </div>
+// // );
+// // curly brackets will be used to write any Javascript Expression inside JSX
+
+// root.render(container);
+
+// -================================== COMPONENTS & Reusability ==================================
+
+// const parent = document.getElementById("dom-root");
+// const root = ReactDOM.createRoot(parent);
+
+// const Card = (obj) => {
+//     return (
+//         <div className="card">
+//             <div>
+//                 <h3>Hello {obj.userName}!</h3>
+//                 <p>{obj.greetings}! How are you?</p>
+//             </div>
+//             <img
+//                 className="image"
+//                 src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+//             ></img>
+//         </div>
+//     );
+// }; // Javascript FUNCTION
+
+// // const container = React.createElement("div", {}, [
+// //     <Card userName="Likhilesh" greetings="Hello" />,
+// //     <Card userName="Hemant" greetings="Hi" />,
+// //     <Card userName="Himanshu" greetings="GM" />,
+// //     <Card userName="Abhishek" greetings="Hi" />,
+// // ]);
+
+// const Container = () => {
+//     return (
+//         <div>
+//             <Card userName="Likhilesh" greetings="Hello" />
+//             <Card userName="Hemant" greetings="Hi" />
+//             <Card userName="Himanshu" greetings="GM" />
+//             <Card userName="Abhishek" greetings="Hi" />
+//         </div>
+//     );
+// };
+
+// // You can use a React Component as a JSX Element
+// // This is not possible with React ELEMENT
+
+// // root.render(Container());
+// root.render(<Container />);
+
+// ---------------------------------- NO COMMENTS ------------------------------
 const parent = document.getElementById("dom-root");
 const root = ReactDOM.createRoot(parent);
 
-const container = (
-    <div className="card">
-        <div>
-            <h2>Hello</h2>
-            <p>Description</p>
+const Card = (obj) => {
+    return (
+        <div className="card">
+            <div>
+                <h3>Hello {obj.userName}!</h3>
+                <p>{obj.greetings}! How are you?</p>
+            </div>
+            <img
+                className="image"
+                src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+            ></img>
         </div>
-        <img
-            className="image"
-            src="https://plus.unsplash.com/premium_photo-1664474619075-644dd191935f?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
-        ></img>
-    </div>
-);
+    );
+};
 
-root.render(container);
+const Container = () => {
+    return (
+        <div>
+            <Card userName="Likhilesh" greetings="Hello" />
+            <Card userName="Hemant" greetings="Hi" />
+            <Card userName="Himanshu" greetings="GM" />
+            <Card userName="Abhishek" greetings="Hi" />
+        </div>
+    );
+};
+
+console.log(Container());
+
+root.render(<Container />);
