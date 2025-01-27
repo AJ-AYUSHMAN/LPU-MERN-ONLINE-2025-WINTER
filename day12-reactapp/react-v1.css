@@ -1,0 +1,22 @@
+/* .text-style-type-1 {
+    color: brown;
+    background-color: yellow;
+    padding: 2rem;
+    border-radius: 1rem;
+} */
+
+.card {
+    display: flex;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid blue;
+    background-color: yellow;
+    color: brown;
+    gap: 1rem;
+    width: fit-content;
+    margin: 1rem auto;
+}
+
+.image {
+    height: 100px;
+}
