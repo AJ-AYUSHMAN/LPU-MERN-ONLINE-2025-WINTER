@@ -17,10 +17,11 @@ function TaskPage() {
     // it returns you the array,
     // the first item is the variable and second item is the function to change that variable
     const [user, setUser] = useState("Ajay");
+    const [title, setTitle] = useState("");
     // use "user" whenever you want to SEE the value
     // use "setUser" whenever you want to CHANGE the value
 
-    const handleReactInput = (e) => {
+    const handleAssignee = (e) => {
         // ** // you don't change the value directly like normal variable
         // user = e.target.value;
 
@@ -28,12 +29,27 @@ function TaskPage() {
         setUser(e.target.value); // REACT says NOTED! :: from next time, I will use this new value
     };
 
+    const handleTitle = (e) => {
+        setTitle(e.target.value);
+    };
+
     return (
         <div className="task-page">
             <h2>
-                This is a task page from <ins>{user}</ins>
+                Assignee: <ins>{user}</ins>
             </h2>
-            <input className="user-input" onChange={handleReactInput} />
+            <h2>
+                Title: <ins>{title}</ins>
+            </h2>
+            <div>
+                <label>Assignee</label>
+                <input className="user-input" onChange={handleAssignee} />
+            </div>
+            <div>
+                <label>Title</label>
+                <input className="user-input" onChange={handleTitle} />
+            </div>
+            {/* // .... H.W. to make more input / select / ... */}
         </div>
     );
 }
