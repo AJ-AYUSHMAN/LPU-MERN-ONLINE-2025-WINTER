@@ -15,13 +15,21 @@ const TaskForm = ({ setTaskList }) => {
     };
 
     const handleSubmitTask = () => {
-        const obj = {};
-        obj.workTitle = workTitle;
-        obj.taskTitle = taskTitle;
-        obj.assignee = assignee;
-        obj.assignor = "Likhilesh";
-        console.log(obj);
-        setTaskList([obj]);
+        const obj = {
+            workTitle,
+            taskTitle,
+            assignee,
+            assignor: "Likhilesh",
+        };
+
+        setTaskList((prev) => {
+            // logic
+            // then return new state
+            const newArr = [...prev]; // after this line, values remain the same,
+            //                           new reference is returned so that react understand that array has changed
+            newArr.push(obj);
+            return newArr;
+        });
     };
 
     return (
