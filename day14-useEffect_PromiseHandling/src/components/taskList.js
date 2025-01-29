@@ -1,4 +1,5 @@
-const TaskList = () => {
+const TaskList = ({ taskList }) => {
+    console.log(taskList);
     return (
         <div>
             <h3>Task List</h3>

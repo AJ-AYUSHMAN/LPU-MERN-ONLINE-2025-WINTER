@@ -1,9 +1,10 @@
 import "./taskForm.css";
 import { useState } from "react";
 
-const TaskForm = () => {
+const TaskForm = ({ setTaskList }) => {
     const [workTitle, setWorkTitle] = useState("");
     const [taskTitle, setTaskTitle] = useState("");
+    const [assignee, setAssignee] = useState("Vishal");
 
     const handleWorkTitleChange = (e) => {
         setWorkTitle(e.target.value);
@@ -13,10 +14,20 @@ const TaskForm = () => {
         setTaskTitle(e.target.value);
     };
 
+    const handleSubmitTask = () => {
+        const obj = {};
+        obj.workTitle = workTitle;
+        obj.taskTitle = taskTitle;
+        obj.assignee = assignee;
+        obj.assignor = "Likhilesh";
+        console.log(obj);
+        setTaskList([obj]);
+    };
+
     return (
         <div className="task-form">
             <h3>
-                Task Form :: {workTitle} :: {taskTitle}
+                Task Form :: {workTitle} :: {taskTitle} :: {assignee}
             </h3>
             <div className="form-input-container">
                 <label>Work Title</label>
@@ -38,6 +49,20 @@ const TaskForm = () => {
                     onChange={handleTaskTitleChange}
                 ></input>
             </div>
+            <div className="form-input-container">
+                <label>Assignee</label>
+                <select
+                    value={assignee}
+                    onChange={(e) => {
+                        setAssignee(e.target.value);
+                    }}
+                >
+                    <option value="Raj">Raj</option>
+                    <option value="Vishal">Vishal</option>
+                    <option value="Shubhanshu">Shubhanshu</option>
+                </select>
+            </div>
+            <button onClick={handleSubmitTask}>Add Task</button>
         </div>
     );
 };
