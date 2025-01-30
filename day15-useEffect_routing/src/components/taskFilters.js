@@ -1,19 +1,45 @@
 import React from "react";
 
-const TaskFilters = ({ assigneeOptions, assignorOptions }) => {
+const TaskFilters = ({ assigneeOptions, assignorOptions, setFilterAssignee, setFilterAssignor, setFilterDeadline }) => {
     return (
         <div>
             <div>
                 <label>Assignee</label>
-                <select></select>
+                <select
+                    name="filter-assignee"
+                    onChange={(e) => {
+                        setFilterAssignee(e.target.value);
+                    }}
+                >
+                    <option value="">--</option>
+                    {assigneeOptions.map((elem) => {
+                        return <option value={elem}>{elem}</option>;
+                    })}
+                </select>
             </div>
             <div>
                 <label>Assignor</label>
-                <select></select>
+                <select
+                    name="filter-assignor"
+                    onChange={(e) => {
+                        setFilterAssignor(e.target.value);
+                    }}
+                >
+                    <option value="">--</option>
+                    {assignorOptions.map((elem) => {
+                        return <option value={elem}>{elem}</option>;
+                    })}
+                </select>
             </div>
             <div>
                 <label>Deadline</label>
-                <deadline></deadline>
+                <input
+                    type="date"
+                    name="filter-deadline"
+                    onChange={(e) => {
+                        setFilterDeadline(e.target.value);
+                    }}
+                ></input>
             </div>
         </div>
     );
