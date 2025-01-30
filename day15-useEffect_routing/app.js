@@ -5,18 +5,22 @@ import Dashboard from "./src/pages/dashboard";
 import DummyTodos from "./src/pages/dummyTodos";
 import HomePage from "./src/pages/homePage";
 
+import { BrowserRouter, Routes, Route } from "react-router";
+
 const domElement = document.getElementById("dom-root");
 const reactRoot = ReactDOM.createRoot(domElement);
 
+// REACT is a SINGLE PAGE APPLICATION
+
 const App = () => {
     return (
-        // <React.Fragment>
-        <>
-            <HomePage />
-            {/* <Dashboard /> */}
-            {/* <DummyTodos /> */}
-        </>
-        // </React.Fragment>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dummy" element={<DummyTodos />} />
+            </Routes>
+        </BrowserRouter>
     );
 };
 

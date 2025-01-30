@@ -24,6 +24,7 @@ const DummyTodos = () => {
 
     return (
         <div>
+            <a href="/">Home</a>
             <h2>Todos List from API</h2>
             <p>This is a dummy page to show todo's list by fetching API</p>
             {data.map((elem) => {

@@ -213,6 +213,7 @@ const Dashboard = () => {
     ]);
     return (
         <div className="dashboard-container">
+            <a href="/">Home</a>
             <h1 className="title">Dashboard for Tasks</h1>
             <TaskForm setTaskList={setTaskList} assigneeOptions={assigneeOptions} />
             <TaskFilters
