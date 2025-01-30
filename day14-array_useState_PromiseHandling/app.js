@@ -11,8 +11,8 @@ const App = () => {
     return (
         // <React.Fragment>
         <>
-            {/* <Dashboard /> */}
-            <DummyTodos />
+            <Dashboard />
+            {/* <DummyTodos /> */}
         </>
         // </React.Fragment>
     );

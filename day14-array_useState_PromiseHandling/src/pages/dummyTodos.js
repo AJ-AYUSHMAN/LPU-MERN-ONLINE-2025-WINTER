@@ -22,9 +22,14 @@ const DummyTodos = () => {
         setData(resObj.todos);
     };
 
+    // Un-comment --> INFINITE
+    // Comment --> ZERO
+
     // getData();
 
     console.log("-->", data);
+
+    // useEffect --> sideEffect
 
     return (
         <div>
