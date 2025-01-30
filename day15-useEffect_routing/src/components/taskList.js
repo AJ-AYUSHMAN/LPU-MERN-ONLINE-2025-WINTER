@@ -1,15 +1,20 @@
+import "./taskList.css";
+
 const TaskList = ({ taskList }) => {
     console.log(taskList);
 
     return (
-        <div>
+        <div className="task-list-main-container">
             <h3>Task List</h3>
             {taskList.map((elem) => {
                 return (
-                    <div>
-                        <h4>{elem.workTitle}</h4>
-                        <p>{elem.taskTitle}</p>
-                        <p>{elem.assignee}</p>
+                    <div className="task-list-card">
+                        <h4>
+                            {elem.workTitle} :: {elem.taskTitle}
+                        </h4>
+                        <p>Assignee :: {elem.assignee}</p>
+                        <p>{elem.deadline}</p>
+                        <p>Assignor :: {elem.assignor}</p>
                     </div>
                 );
             })}

@@ -1,7 +1,7 @@
 import "./dummyTodos.css";
 import { useState, useEffect } from "react";
 
-// Parent Re-renders OR PROPS change OR `State variable change` :: Component Re-renders
+// PROPS change OR `State variable change` :: Component Re-renders
 const DummyTodos = () => {
     // useState hook will create the variable only on first-render
     // gives it the default value only on first-render

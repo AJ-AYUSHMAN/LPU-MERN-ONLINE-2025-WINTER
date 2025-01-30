@@ -15,6 +15,11 @@ const TaskForm = ({ setTaskList }) => {
     };
 
     const handleSubmitTask = () => {
+        if (taskTitle.length == 0) {
+            alert("...");
+            return;
+        }
+
         const obj = {
             workTitle,
             taskTitle,

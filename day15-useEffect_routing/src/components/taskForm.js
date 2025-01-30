@@ -1,24 +1,15 @@
 import "./taskForm.css";
-import { useState } from "react";
 
-const TaskForm = ({ setTaskList }) => {
-    const [workTitle, setWorkTitle] = useState("");
-    const [taskTitle, setTaskTitle] = useState("");
-    const [assignee, setAssignee] = useState("Vishal");
+// uncontrolled components
+const TaskForm = ({ setTaskList, assigneeOptions }) => {
+    const handleSubmitTask = (e) => {
+        e.preventDefault();
 
-    const handleWorkTitleChange = (e) => {
-        setWorkTitle(e.target.value);
-    };
-
-    const handleTaskTitleChange = (e) => {
-        setTaskTitle(e.target.value);
-    };
-
-    const handleSubmitTask = () => {
         const obj = {
-            workTitle,
-            taskTitle,
-            assignee,
+            workTitle: e.target[0].value,
+            taskTitle: e.target[1].value,
+            assignee: e.target[2].value,
+            deadline: e.target[3].value,
             assignor: "Likhilesh",
         };
 
@@ -33,53 +24,35 @@ const TaskForm = ({ setTaskList }) => {
     };
 
     return (
-        <div className="task-form">
-            <h3>
-                Task Form :: {workTitle} :: {taskTitle} :: {assignee}
-            </h3>
+        // we use it on form
+        <form onSubmit={handleSubmitTask} className="task-form">
+            <h3>Task Form</h3>
             <div className="form-input-container">
                 <label>Work Title</label>
-                <input
-                    type="text"
-                    name="work-title"
-                    placeholder="Type here..."
-                    value={workTitle}
-                    onChange={handleWorkTitleChange}
-                ></input>
+                <input type="text" name="work-title" placeholder="Type here..."></input>
             </div>
             <div className="form-input-container">
                 <label>Task Title</label>
-                <input
-                    type="text"
-                    name="task-title"
-                    placeholder="Type here..."
-                    value={taskTitle}
-                    onChange={handleTaskTitleChange}
-                ></input>
+                <input type="text" name="task-title" placeholder="Type here..." required></input>
             </div>
             <div className="form-input-container">
                 <label>Assignee</label>
-                <select
-                    value={assignee}
-                    onChange={(e) => {
-                        setAssignee(e.target.value);
-                    }}
-                >
-                    <option value="Raj">Raj</option>
+                <select>
+                    {/* <option value="Raj">Raj</option>
                     <option value="Vishal">Vishal</option>
-                    <option value="Shubhanshu">Shubhanshu</option>
+                    <option value="Shubhanshu">Shubhanshu</option> */}
+                    {assigneeOptions.map((name) => {
+                        return <option value={name}>{name}</option>;
+                    })}
                 </select>
             </div>
-            <button onClick={handleSubmitTask}>Add Task</button>
-        </div>
+            <div className="form-input-container">
+                <label>Deadline</label>
+                <input type="date" name="deadline"></input>
+            </div>
+            <button>Add Task</button>
+        </form>
     );
 };
 
 export default TaskForm;
-
-// {/*
-//                 UN-CONTROLLED Component :: it is NOT controlled by REACT
-//                 :: --> IT is controlled by DOM / HTMl / Browser
-
-//                 <input type="text" name="task-title" placeholder="Type here..."></input>
-//                 */}
