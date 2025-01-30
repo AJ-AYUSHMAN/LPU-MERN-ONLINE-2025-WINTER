@@ -2,6 +2,7 @@ import { useState } from "react";
 import TaskForm from "../components/taskForm";
 import TaskList from "../components/taskList";
 import "./dashboard.css";
+import TaskFilters from "../components/taskFilters";
 
 const Dashboard = () => {
     const assigneeOptions = [

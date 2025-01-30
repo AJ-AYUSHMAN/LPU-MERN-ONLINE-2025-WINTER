@@ -1,3 +1,5 @@
+import React from "react";
+
 const TaskFilters = ({ assigneeOptions, assignorOptions }) => {
     return (
         <div>
@@ -16,3 +18,5 @@ const TaskFilters = ({ assigneeOptions, assignorOptions }) => {
         </div>
     );
 };
+
+export default TaskFilters;
