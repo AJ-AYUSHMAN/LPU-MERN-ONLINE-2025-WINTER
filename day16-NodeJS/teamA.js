@@ -1,7 +1,5 @@
 const box = require("./teamB.js");
 
-console.log("2", box);
-
 const ans1 = box.sum(10, 20);
 console.log(ans1);
 

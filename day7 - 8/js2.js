@@ -359,7 +359,7 @@
 
 // -----------------------------------------------------------------------------------------
 
-// anonymous FUNCTION ASSIGNMENT (GIVES same benefits as earlier with shorter syntax)
+// ** anonymous FUNCTION ASSIGNMENT (GIVES same benefits as earlier with shorter syntax)
 // const temp = function () {
 //     console.log("Hello all again!");
 // };
@@ -368,7 +368,7 @@
 
 // -------------------------------------------------------------------------------------------
 
-// arrow FUNCTION ASSIGNMENT (GIVES same benefits as earlier with shorter syntax)
+// **** arrow FUNCTION ASSIGNMENT (GIVES same benefits as earlier with shorter syntax)
 // const temp = () => {
 //     console.log("Hello all again!");
 // };
