@@ -1,7 +1,20 @@
 function sum(a, b) {
-    // parameters
     console.log("---calculating sum---");
     return a + b;
 }
 
-module.exports = sum;
+function multiply(a, b) {
+    console.log("---calculating product---");
+    return a * b;
+}
+
+// container options in js?
+// --> Array, Object :: object
+const container = {
+    sum: sum,
+    mul: multiply,
+};
+
+console.log("1", container);
+
+module.exports = container;
