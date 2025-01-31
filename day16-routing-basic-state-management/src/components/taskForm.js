@@ -11,6 +11,7 @@ const TaskForm = ({ setTaskList, assigneeOptions }) => {
             assignee: e.target[2].value,
             deadline: e.target[3].value,
             assignor: "Likhilesh",
+            status: "todo",
         };
 
         setTaskList((prev) => {

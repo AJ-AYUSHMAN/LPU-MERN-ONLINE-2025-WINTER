@@ -227,6 +227,7 @@ const Dashboard = () => {
                 filterAssignor={filterAssignor}
                 filterDeadline={filterDeadline}
                 setTaskList={setTaskList}
+                filterKeyword="todo"
                 title="TODO"
             />
             <TaskList
@@ -235,6 +236,7 @@ const Dashboard = () => {
                 filterAssignor={filterAssignor}
                 filterDeadline={filterDeadline}
                 setTaskList={setTaskList}
+                filterKeyword="done"
                 title="DONE"
             />
         </div>

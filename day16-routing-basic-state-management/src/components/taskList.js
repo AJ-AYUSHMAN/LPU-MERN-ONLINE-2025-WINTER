@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import "./taskList.css";
 
-const TaskList = ({ taskList, filterAssignee, filterAssignor, filterDeadline, setTaskList, title }) => {
+const TaskList = ({ taskList, filterAssignee, filterAssignor, filterDeadline, setTaskList, title, filterKeyword }) => {
+    console.log("🟡 : taskList:", taskList);
     const filteredList = taskList.filter((obj) => {
         // TODO :: complete the filter function
         let flag = true;
@@ -17,6 +18,8 @@ const TaskList = ({ taskList, filterAssignee, filterAssignor, filterDeadline, se
             if (filterAssignor !== obj.assignor) flag = false;
         }
 
+        if (filterKeyword !== obj.status) flag = false;
+
         return flag;
     });
 
@@ -25,6 +28,14 @@ const TaskList = ({ taskList, filterAssignee, filterAssignor, filterDeadline, se
         setTaskList((prev) => {
             const newArr = [...prev]; // reference or address, of the new array will be different from the array
             newArr.splice(i, 1);
+            return newArr;
+        });
+    };
+
+    const handleMarkAsDone = (i) => {
+        setTaskList((prev) => {
+            const newArr = [...prev];
+            newArr[i].status = "done";
             return newArr;
         });
     };
@@ -42,6 +53,7 @@ const TaskList = ({ taskList, filterAssignee, filterAssignor, filterDeadline, se
                         <p>{elem.deadline}</p>
                         <p>Assignor :: {elem.assignor}</p>
                         <button onClick={() => handleDelete(idx)}>Delete</button>
+                        <button onClick={() => handleMarkAsDone(idx)}>Mark as Done</button>
                     </div>
                 );
             })}
