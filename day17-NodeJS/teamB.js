@@ -10,3 +10,7 @@ const sum = (a, b) => {
 };
 
 console.log("B");
+
+module.exports = {
+    sum,
+};

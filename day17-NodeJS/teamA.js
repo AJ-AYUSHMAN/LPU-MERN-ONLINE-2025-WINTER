@@ -1,4 +1,4 @@
-require("./teamB.js");
+const { sum } = require("./teamB.js");
 
 console.log("C");
 
