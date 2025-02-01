@@ -1,0 +1,6 @@
+1. npm init -y
+2. i deleted the main file property from package.json
+
+3. user-defined-modules
+ ---> import-export is modern :: we are using it in react :: ESM
+ ---> export-require is commonjs :: we will use it in node :: CJM
