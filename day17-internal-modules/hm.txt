@@ -1,0 +1,10 @@
+const fs = require("fs")
+const fsPromises = require("fs/promises")
+
+fs.readFileSync --> sync
+fsPromises.readFile --> Async :: promises :: Almost all the time use this
+fs.readFile --> Async :: callback
+
+fs.writeFileSync --> sync
+fsPromises.writeFile --> Async :: promises :: Almost all the time use this
+fs.writeFile --> Async :: callback
