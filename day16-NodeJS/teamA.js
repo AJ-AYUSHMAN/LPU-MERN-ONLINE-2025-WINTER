@@ -1,7 +1,14 @@
-const { sum, mul } = require("./teamB.js");
+const { sum } = require("./teamB.js");
 
-const ans1 = sum(10, 20);
-console.log(ans1);
+const sumArray = (arr) => {
+    let total = 0;
+    for (let i = 0; i < arr.length; i++) {
+        total = sum(total, arr[i]);
+    }
+    return total;
+};
 
-const ans2 = mul(10, 20);
-console.log(ans2);
+module.exports = {
+    // key: value
+    sumArray,
+};

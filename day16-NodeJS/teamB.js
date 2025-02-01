@@ -12,6 +12,7 @@ const multiply = (a, b) => {
 // --> Array, Object :: object
 
 module.exports = {
-    sum: sum,
+    // sum: sum, :: ES6+
+    sum,
     mul: multiply,
 };
