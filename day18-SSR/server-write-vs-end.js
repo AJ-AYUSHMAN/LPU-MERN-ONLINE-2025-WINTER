@@ -6,6 +6,7 @@ const getData = async () => {
     return data.products;
 }; // :: returns a promise
 // :: which completes when the last line of that function executes
+// and the promises returns the data which is returned in the function
 
 const server = http.createServer(async (req, res) => {
     const path = req.url;

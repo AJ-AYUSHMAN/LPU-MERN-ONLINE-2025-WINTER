@@ -1,4 +1,5 @@
 const http = require("http");
+const fsPromises = require("fs/promises");
 
 const getData = async () => {
     const res = await fetch("https://dummyjson.com/products");
@@ -6,6 +7,8 @@ const getData = async () => {
     return data.products;
 }; // :: returns a promise
 // :: which completes when the last line of that function executes
+//    OR something is return
+// :: the promises returns the data which is returned in the function
 
 const getCardUI = (products) => {
     let finalHTML = ``;
@@ -15,7 +18,7 @@ const getCardUI = (products) => {
             <h4>${elem.title}</h4>
             <img src='${elem.thumbnail}' />
             <p>${elem.description}</p>
-            <a href='/${elem.id}'>More...</a>
+            <a href='/view?id=${elem.id}'>More...</a>
         </div>
         `;
     });
@@ -23,44 +26,46 @@ const getCardUI = (products) => {
 };
 
 const server = http.createServer(async (req, res) => {
-    const path = req.url;
+    const url = req.url;
+    const [path, query] = url.split("?");
     console.log("-->", path);
     res.setHeader("content-type", "text/html");
 
     if (path == "/") {
         const products = await getData();
+        const cardsUiHTMLString = getCardUI(products);
         // using backtick, we can write multiline string in JS
-        res.end(`
-<html>
-    <head>
-        <style>
-            body{
-                background-color: yellow;
-                padding: 1rem;
-            }
-            .card{
-                max-width: 400px;
-                background-color: khaki;
-                color: darkblue;
-                padding: 1rem;
-                border: 2px solid lightgrey;
-                border-radius: 1rem;
-                margin: 1rem auto;
-            }
-            img{
-                height: 125px;
-                display: block;
-                width: fit-content;
-                margin: auto;
-            }
-        </style>
-    </head>
-    <body>
-        ${getCardUI(products)}
-    </body>
-</html>`);
+        res.end(
+            `
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='./styles1.css'>
+</head>
+
+<body>
+    ${cardsUiHTMLString} 
+</body>
+
+</html>
+`
+        );
     } else if (path == "/about") {
         res.end("<h1 style='color: blue'>About Page</h1>");
+    } else if (path == "/styles1.css") {
+        res.setHeader("content-type", "text/css");
+        const data = await fsPromises.readFile("./styles1.css");
+        res.end(data);
+    } else if (path === "/view") {
+        const data = fetch("https://dummyjson.com/products/1");
+        //......................... HOME WORK ...........
+        res.end(`
+            <h1>You are visiting ${query}</h1>
+        `);
     } else {
         res.end("<h1 style='color: green'>Oops... Page Not Found!</h1>");
     }
