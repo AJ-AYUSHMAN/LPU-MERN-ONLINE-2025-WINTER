@@ -85,7 +85,7 @@ app.patch("/tasks/:taskId", async (req, res) => {
         // we need which data object to change :: request params in the url
         // --> identification mark :: id
         const { taskId } = req.params;
-        const updatedTaskInfo = req.body;
+        const { id: tempId, ...updatedTaskInfo } = req.body; // complex destructuring
 
         // 2. Read the current List from file
         const text = await fsPromises.readFile("./db.json", "utf-8");
@@ -108,7 +108,7 @@ app.patch("/tasks/:taskId", async (req, res) => {
         } else {
             // 4. change the data that you need to
             const oldTask = arr[foundIndex];
-            const finalNewTask = { ...oldTask, updatedTaskInfo };
+            const finalNewTask = { ...oldTask, ...updatedTaskInfo };
             arr[foundIndex] = finalNewTask;
 
             // 5. save the updated List as text in the file
