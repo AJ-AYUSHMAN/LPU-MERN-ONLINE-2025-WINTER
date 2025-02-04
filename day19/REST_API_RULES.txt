@@ -47,3 +47,7 @@ For Example:
     * To get all the tasks --> GET "/tasks"
     * To edit a task --> PUT or PATCH "/tasks"
     * To delete a task --> DELETE "/tasks"
+
+
+PUT   --> replace the entire document with the new Information
+PATCH --> change the portion of current document
