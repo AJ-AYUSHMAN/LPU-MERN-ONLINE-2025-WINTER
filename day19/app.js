@@ -31,7 +31,6 @@ app.get("/tasks", async (req, res) => {
 
 // make a new task and add it to the taskList, that is, DB
 app.post("/tasks", async (req, res) => {
-    // you will get the data in request
     // :: to send the data from frontend :: majorly
     // :: in url without query, query (?name=john&surname=doe&age=30), body
     // url has a limit and visible to all (similar with query)
@@ -42,12 +41,24 @@ app.post("/tasks", async (req, res) => {
     // so, to serialize the incoming requests body, convert it into js object and attach it to req object
     // we use some library like body-parser :: external OR express.json() available in express
     // ----------------------------------------------------
-    console.log(req.body);
+    // 1. you will get the data in request
+    const newObj = req.body;
+    console.log("newObj:", newObj);
 
-    // frontend to backend
-    // read the current list
-    // then append the new data into it
-    // save the new list
+    // 2. read the current list
+    const text = await fsPromises.readFile("./db.json", "utf-8"); // reading the db file
+    const arr = JSON.parse(text); // converting text into js array / object
+
+    // 3. then append the new data into it
+    arr.push(newObj);
+
+    // 4. save the new list
+    const textData = JSON.stringify(arr); // converting the js array / object into text
+    await fsPromises.writeFile("./db.json", textData); // saving it in the file
+
+    res.json({
+        status: "success",
+    });
 });
 
 app.listen(PORT, () => {
