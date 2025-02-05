@@ -16,6 +16,22 @@ app.get("/", (req, res) => {
     res.send(`<h1>Server is running ...</h1>`);
 });
 
+app.get("/tasks", async (req, res) => {
+    try {
+        const tasks = await Task.find();
+        res.status(200);
+        res.json({
+            status: "success",
+            data: {
+                tasks,
+            },
+        });
+    } catch (err) {
+        console.log("Error in POST /tasks", err.message);
+        res.status(500).json({ status: "fail", message: "Internal Server Error" });
+    }
+});
+
 app.post("/tasks", async (req, res) => {
     try {
         // 1. get the data from request
@@ -34,7 +50,11 @@ app.post("/tasks", async (req, res) => {
         });
     } catch (err) {
         console.log("Error in POST /tasks", err.message);
-        res.status(500).json({ status: "fail", message: "Internal Server Error" });
+        if (err.name === "ValidationError") {
+            res.status(400).json({ status: "fail", message: err.message });
+        } else {
+            res.status(500).json({ status: "fail", message: "Internal Server Error" });
+        }
     }
 });
 

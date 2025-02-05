@@ -2,16 +2,26 @@ const mongoose = require("mongoose");
 
 const taskSchema = new mongoose.Schema(
     {
-        workTitle: String, // one way to add a property in schema
+        workTitle: {
+            type: String,
+            trim: true,
+        }, // one way to add a property in schema
         deadline: Date, // one way to add a property in schema
         taskTitle: {
             // another way to add a property in schema :: this helps you to add validations
             type: String,
             required: true,
+            trim: true,
         },
         assignee: {
             type: String,
             required: true,
+            trim: true,
+        },
+        assignor: {
+            type: String,
+            required: true,
+            trim: true,
         },
         priority: {
             type: String,
