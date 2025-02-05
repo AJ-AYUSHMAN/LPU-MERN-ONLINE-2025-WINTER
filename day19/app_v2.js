@@ -17,6 +17,21 @@ app.post("/tasks", async (req, res) => {
         // 1. you will get the data in request
         const newObj = req.body;
 
+        // REQUEST VALIDATION :: Basic
+        if (
+            newObj.assignee == undefined ||
+            newObj.assignee.length == 0 ||
+            newObj.taskTitle == undefined ||
+            newObj.taskTitle.length === 0
+        ) {
+            res.status(400);
+            res.json({
+                status: "fail",
+                message: "TaskTitle and Assignee is required",
+            });
+            return;
+        }
+
         // 2. read the current list
         let text = await fsPromises.readFile("./db.json", "utf-8");
         if (text.length == 0) text = "[]";
@@ -80,6 +95,7 @@ app.get("/tasks", async (req, res) => {
 
 // UPDATE
 app.patch("/tasks/:taskId", async (req, res) => {
+    // medium DSA question
     try {
         // 1. Get data from request :: body for changes &
         // we need which data object to change :: request params in the url
@@ -125,6 +141,53 @@ app.patch("/tasks/:taskId", async (req, res) => {
         }
     } catch (err) {
         console.log("Error in PATCH TASKS: ", err.message);
+        res.status(500);
+        res.json({
+            status: "fail",
+            message: "Internal Server Error",
+        });
+    }
+});
+
+// DELETE
+app.delete("/tasks/:taskId", async (req, res) => {
+    try {
+        // 1. Get the data from the request -> taskId & params
+        const { taskId } = req.params;
+
+        // 2. Read the current list
+        const text = await fsPromises.readFile("./db.json", "utf-8");
+        const arr = JSON.parse(text);
+
+        // 3. Find the index of the element using taskId
+        const foundIndex = arr.findIndex((elem) => {
+            if (elem.id == taskId) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        if (foundIndex == -1) {
+            res.status(400);
+            res.json({
+                status: "fail",
+                message: "invalid task id",
+            });
+        } else {
+            // 4. Splice the data (if the task id is valid)
+            arr.splice(foundIndex, 1);
+
+            // 5. Store the updated array in the list
+            await fsPromises.writeFile("./db.json", JSON.stringify(arr));
+
+            res.status(204);
+            res.json({
+                status: "success",
+            });
+        }
+    } catch (error) {
+        console.log(error.message);
         res.status(500);
         res.json({
             status: "fail",
