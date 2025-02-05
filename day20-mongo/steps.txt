@@ -34,7 +34,8 @@
 
 7. To get the connection string --> Connect button --> drivers --> nodejs --> copy link
 (MAKE sure that your password does not have SPECIAL CHARACTERS : use alphabets and numbers only)
-
+in between ".../?..." write database name
+for ex, .../TASK_DB?...
 
 8. In app js, require this file.
 // requiring a file (first time) runs that file line-by-line
@@ -63,3 +64,37 @@ SCHEMA               ---------------------------------------->    MODEL  -------
 
 
 11. Make a folder names models --> make a file names taskModel.js
+(https://mongoosejs.com/docs/)
+(https://mongoosejs.com/docs/guide.html#definition)
+(https://mongoosejs.com/docs/validation.html)
+--> Create a SCHEMA --> create a MODEL 
+(this model will be used in future to do CRUD operations)
+
+
+--> key: type
+--> key: {type: ,...}
+
+--> _id is added to the document by default (and it is unique :: assurance given to you by mongodb)
+(so, you don't need to worry about id creation)
+
+--> in a database, we always want to have a notion of timing of entry create and update (for debugging purpose)
+Schema({...schema rules...},{timestamps: true});
+when we write timestamps true, DB will add the timestamps not the server
+
+
+// SERVER        ----sent-the-request---> Database
+// (10:52:41:330)                       (10:52:41:376) (this is the real time of entry creation)(we prefer database time)
+// (hh:mm:ss:milli)
+
+
+
+--> mongoose.model("tasks", taskSchema); // collectionName (keep it plural), schema
+// id the collectionName is not present in DB, then the mongoose will automatically create a collection with that name
+
+
+## Once you create a model
+(https://mongoosejs.com/docs/api/model.html#Model.create())
+
+
+## TIMEZONES
+https://upload.wikimedia.org/wikipedia/commons/e/ec/World_Time_Zones_Map.svg
