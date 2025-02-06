@@ -61,12 +61,27 @@ app.post("/tasks", async (req, res) => {
 app.patch("/tasks/:taskId", async (req, res) => {
     try {
         const { taskId } = req.params;
-        const taskInfo = req.body;
+        const { workTitle, assignee, priority, status } = req.body;
 
-        const updatedTask = await Task.findByIdAndUpdate(taskId, taskInfo, {
-            returnDocument: "after", // by default: before, it shows the document before update was applied
-        }); // query, when we write await or .exec(), then only the query goes to db and runs there to get the data
-        console.log(updatedTask);
+        const updatedTask = await Task.findByIdAndUpdate(
+            taskId,
+            {
+                workTitle,
+                assignee,
+                priority,
+                status,
+            },
+            {
+                returnDocument: "after", // by default: before, it shows the document before update was applied
+                runValidators: true, // we want to validate schema on update
+            }
+        ); // query, when we write await or .exec(), then only the query goes to db and runs there to get the data
+        if (updatedTask === null) {
+            res.status(400).json({
+                status: "fail",
+                message: "Task ID does not exists!",
+            });
+        }
 
         res.status(200).json({
             status: "success",
