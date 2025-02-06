@@ -1,0 +1,13 @@
+1. npm create vite@latest --> project name --> . --> choose react --> javascript
+
+2. Delete the items in public folder
+3. Delete the items in src/assets folder
+4. Remove all css in index.css
+5. Delete the App.css file
+6. Remove all code in App.jsx
+
+7. npm i :: (it will install all the mentioned dependencies :: package.json)
+
+8. npm run dev :: to start the application
+
+
