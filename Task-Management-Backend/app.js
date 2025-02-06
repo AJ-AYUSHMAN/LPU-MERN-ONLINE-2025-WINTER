@@ -1,11 +1,13 @@
 const express = require("express");
 require("./config/dbConfig.js");
 const Task = require("./models/taskModel.js");
+const cors = require("cors"); // import cors
 
 const PORT = 1401;
 
 const app = express();
 
+app.use(cors()); // use cord :: NOTE :: it allows all origins to connect
 app.use(express.json());
 
 // CUSTOM MIDDLEWARE

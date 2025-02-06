@@ -98,3 +98,12 @@ when we write timestamps true, DB will add the timestamps not the server
 
 ## TIMEZONES
 https://upload.wikimedia.org/wikipedia/commons/e/ec/World_Time_Zones_Map.svg
+
+
+-------------------
+if you get CORS ERROR 
+
+install this on backend server and use it
+https://www.npmjs.com/package/cors
+
+--------------------------------
