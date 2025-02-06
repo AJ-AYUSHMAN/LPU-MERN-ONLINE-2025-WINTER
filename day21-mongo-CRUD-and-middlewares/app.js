@@ -1,16 +1,12 @@
 const express = require("express");
 require("./config/dbConfig.js");
-// requiring a file (first time) runs that file line-by-line
-//                  (second time onwards) will get the cached exports
 const Task = require("./models/taskModel.js");
 
 const PORT = 1401;
 
 const app = express();
 
-// by default:: express app does not read the body
-app.use(express.json()); // middleware
-// it reads the request body, serializes it as a js object and attach it to request
+app.use(express.json());
 
 app.get("/", (req, res) => {
     res.send(`<h1>Server is running ...</h1>`);
@@ -62,6 +58,43 @@ app.post("/tasks", async (req, res) => {
 
 // HW --> https://mongoosejs.com/docs/api/model.html#Model.findByIdAndUpdate()
 // PATCH API / UPDATE :: MEDIUM LEVEL DSA Question (Handle All possible edge-cases )
+app.patch("/tasks/:taskId", async (req, res) => {
+    try {
+        const { taskId } = req.params;
+        const taskInfo = req.body;
+
+        const updatedTask = await Task.findByIdAndUpdate(taskId, taskInfo, {
+            returnDocument: "after", // by default: before, it shows the document before update was applied
+        }); // query, when we write await or .exec(), then only the query goes to db and runs there to get the data
+        console.log(updatedTask);
+
+        res.status(200).json({
+            status: "success",
+            data: {
+                task: updatedTask,
+            },
+        });
+    } catch (err) {
+        console.log("Error in PATCH /tasks", err.message);
+        // 1. CastError --> When the id given in the parameter is not in correct format
+        // ex. 67a3045357e60ac4df8e08e3 valid, but 67a3045357e60ac4df8e08e this is invalid
+        if (err.name === "CastError") {
+            res.status(400).json({
+                status: "fail",
+                message: "Invalid parameter",
+            });
+        }
+        // 2. ValidationError --> If the data sent is not valid as per our schema rules
+        else if (err.name === "ValidationError") {
+            res.status(400).json({ status: "fail", message: err.message });
+        }
+        // ex. priority as normal, but we get Normal | price > 1 but we sent 0
+        // 3. Generic error that I am not able to think right now
+        else {
+            res.status(500).json({ status: "fail", message: "Internal Server Error" });
+        }
+    }
+});
 
 // DELETE
 app.delete("/tasks/:taskId", async (req, res) => {
