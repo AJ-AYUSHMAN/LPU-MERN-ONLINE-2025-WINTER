@@ -41,12 +41,14 @@ const TaskList = ({ list }) => {
             <div className="task-list-task-container">
                 {list.map((elem, idx) => {
                     // key :: best: unique property on your own, good: index, worst: nothing as key
-                    if (editTask === idx) {
-                        return (
-                            <div key={elem._id} className="task-card">
-                                <h5>{idx}</h5>
-                                <p>{elem.workTitle}</p>
-                                <p>{elem.taskTitle}</p>
+                    return (
+                        <div key={elem._id} className="task-card">
+                            <h5>{idx}</h5>
+                            <p>{elem.workTitle}</p>
+                            <p>{elem.taskTitle}</p>
+                            {/* short hand of if - else  */}
+                            {/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator */}
+                            {idx === editTask ? (
                                 <div>
                                     <label>Assignee</label>
                                     <input
@@ -57,8 +59,12 @@ const TaskList = ({ list }) => {
                                     />
                                     {/* controlled  input*/}
                                 </div>
-                                <p>{elem.assignor}</p>
-                                <p>{elem.deadline}</p>
+                            ) : (
+                                <p>{elem.assignee}</p>
+                            )}
+                            <p>{elem.assignor}</p>
+                            <p>{elem.deadline}</p>
+                            {idx === editTask ? (
                                 <div>
                                     <label>Priority</label>
                                     <select
@@ -75,29 +81,24 @@ const TaskList = ({ list }) => {
                                     </select>
                                     {/* controlled  input*/}
                                 </div>
-                                <p>{elem.status}</p>
-                                <button onClick={handleEditData}>Submit Changes</button>
-                                <button
-                                    onClick={() => {
-                                        setEditTask(-1);
-                                        setEditObject({});
-                                    }}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
-                        );
-                    } else {
-                        return (
-                            <div key={idx} className="task-card">
-                                <h5>{idx}</h5>
-                                <p>{elem.workTitle}</p>
-                                <p>{elem.taskTitle}</p>
-                                <p>{elem.assignee}</p>
-                                <p>{elem.assignor}</p>
-                                <p>{elem.deadline}</p>
+                            ) : (
                                 <p>{elem.priority}</p>
-                                <p>{elem.status}</p>
+                            )}
+
+                            <p>{elem.status}</p>
+                            {idx === editTask ? (
+                                <div>
+                                    <button onClick={handleEditData}>Submit Changes</button>
+                                    <button
+                                        onClick={() => {
+                                            setEditTask(-1);
+                                            setEditObject({});
+                                        }}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            ) : (
                                 <button
                                     onClick={() => {
                                         setEditObject(elem);
@@ -106,9 +107,9 @@ const TaskList = ({ list }) => {
                                 >
                                     Edit
                                 </button>
-                            </div>
-                        );
-                    }
+                            )}
+                        </div>
+                    );
                 })}
             </div>
         </div>
