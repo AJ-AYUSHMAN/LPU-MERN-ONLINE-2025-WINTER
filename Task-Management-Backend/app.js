@@ -22,15 +22,28 @@ app.get("/", (req, res) => {
     res.send(`<h1>Server is running ...</h1>`);
 });
 
-// READ
+// FILTER API ?? GET API :: /tasks
+
+// READ --> Filter --> List API
 app.get("/tasks", async (req, res) => {
     try {
-        const tasks = await Task.find();
+        const queryObj = req.query;
+        const { priority = "" } = queryObj || {};
+
+        // select * from tasks where taskTitle ilike '%a%'
+        const tasksQuery = Task.find();
+        if (priority.length > 0) {
+            tasksQuery.where("priority").equals(priority);
+        }
+
+        const tasks = await tasksQuery; // only when you use "await" or "then()" or "exec()" or "pass callback";
+
         res.status(200);
         res.json({
             status: "success",
             data: {
                 tasks,
+                total: tasks.length,
             },
         });
     } catch (err) {
