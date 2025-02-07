@@ -44,6 +44,9 @@ const TaskList = ({ list }) => {
                     if (editTask === idx) {
                         return (
                             <div key={elem._id} className="task-card">
+                                <h5>{idx}</h5>
+                                <p>{elem.workTitle}</p>
+                                <p>{elem.taskTitle}</p>
                                 <div>
                                     <label>Assignee</label>
                                     <input
@@ -54,6 +57,8 @@ const TaskList = ({ list }) => {
                                     />
                                     {/* controlled  input*/}
                                 </div>
+                                <p>{elem.assignor}</p>
+                                <p>{elem.deadline}</p>
                                 <div>
                                     <label>Priority</label>
                                     <select
@@ -70,7 +75,16 @@ const TaskList = ({ list }) => {
                                     </select>
                                     {/* controlled  input*/}
                                 </div>
+                                <p>{elem.status}</p>
                                 <button onClick={handleEditData}>Submit Changes</button>
+                                <button
+                                    onClick={() => {
+                                        setEditTask(-1);
+                                        setEditObject({});
+                                    }}
+                                >
+                                    Cancel
+                                </button>
                             </div>
                         );
                     } else {
