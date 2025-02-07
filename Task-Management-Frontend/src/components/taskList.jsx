@@ -1,26 +1,23 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./taskList.css"; //ES6
+import PropTypes from "prop-types";
 // require("./taskList.css") // CJS
 
 // re-render === re-run the function
-const TaskList = () => {
-    // let list = []; // react does not track the normal variables
-    const [list, setList] = useState([]); // array : length can change, order of elements can change
-    // A,B,C,D --> 2: C
-    // C,A,B,D --> 2: B
+const TaskList = ({ list }) => {
+    const [editTask, setEditTask] = useState(-1);
+    const [editObject, setEditObject] = useState({});
+    console.log("🟡 : editObject:", editObject);
+    console.log("🟡 : editTask:", editTask); // 2
 
-    const getData = async () => {
-        const resp = await fetch("http://localhost:1401/tasks");
-        const respBody = await resp.json();
-        // list = respBody.data.tasks;
-        const arrayOfTaskList = respBody.data.tasks;
-        setList(arrayOfTaskList);
+    const handleEditField = (key, value) => {
+        console.log(key, value);
+        setEditObject((prev) => {
+            const newObj = { ...prev };
+            newObj[key] = value;
+            return newObj;
+        });
     };
-
-    // getData(); // if you call the function directly, it will happen infinite times
-    useEffect(() => {
-        getData();
-    }, []);
 
     return (
         <div className="task-list-main">
@@ -28,18 +25,56 @@ const TaskList = () => {
             <div className="task-list-task-container">
                 {list.map((elem, idx) => {
                     // key :: best: unique property on your own, good: index, worst: nothing as key
-                    return (
-                        <div key={idx} className="task-card">
-                            <p>{elem.workTitle}</p>
-                            <p>{elem.taskTitle}</p>
-                            <p>{elem.assignee}</p>
-                            <p>{elem.assignor}</p>
-                        </div>
-                    );
+                    if (editTask === idx) {
+                        return (
+                            <div key={elem._id} className="task-card">
+                                <form>
+                                    <div>
+                                        <label>Assignee</label>
+                                        <input
+                                            value={elem.assignee}
+                                            onChange={(e) => {
+                                                handleEditField("assignee", e.target.value);
+                                            }}
+                                        />
+                                        {/* controlled  input*/}
+                                    </div>
+                                    <div>
+                                        <label>Priority</label>
+                                        <input
+                                            value={elem.priority}
+                                            onChange={(e) => {
+                                                handleEditField("priority", e.target.value);
+                                            }}
+                                        />
+                                    </div>
+                                </form>
+                            </div>
+                        );
+                    } else {
+                        return (
+                            <div key={idx} className="task-card">
+                                <h5>{idx}</h5>
+                                <p>{elem.workTitle}</p>
+                                <p>{elem.taskTitle}</p>
+                                <p>{elem.assignee}</p>
+                                <p>{elem.assignor}</p>
+                                <p>{elem.deadline}</p>
+                                <p>{elem.priority}</p>
+                                <p>{elem.status}</p>
+                                <button onClick={() => setEditTask(idx)}>Edit</button>
+                            </div>
+                        );
+                    }
                 })}
             </div>
         </div>
     );
+};
+
+// https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
+TaskList.propTypes = {
+    list: PropTypes.array,
 };
 
 export default TaskList;

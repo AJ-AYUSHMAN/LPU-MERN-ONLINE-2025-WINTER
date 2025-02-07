@@ -1,4 +1,6 @@
-const TaskForm = () => {
+import PropTypes from "prop-types";
+
+const TaskForm = ({ getData }) => {
     const addTask = async (obj) => {
         const resp = await fetch("http://localhost:1401/tasks", {
             method: "POST",
@@ -10,6 +12,7 @@ const TaskForm = () => {
         const respObj = await resp.json();
         if (respObj.status === "success") {
             console.log("success");
+            getData();
         } else {
             alert(respObj.message);
         }
@@ -68,6 +71,11 @@ const TaskForm = () => {
             </form>
         </div>
     );
+};
+
+// https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
+TaskForm.propTypes = {
+    getData: PropTypes.func.isRequired,
 };
 
 export default TaskForm;
