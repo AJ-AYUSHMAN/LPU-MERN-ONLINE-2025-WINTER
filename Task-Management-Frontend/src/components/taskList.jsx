@@ -5,7 +5,9 @@ import "./taskList.css"; //ES6
 // re-render === re-run the function
 const TaskList = () => {
     // let list = []; // react does not track the normal variables
-    const [list, setList] = useState([]);
+    const [list, setList] = useState([]); // array : length can change, order of elements can change
+    // A,B,C,D --> 2: C
+    // C,A,B,D --> 2: B
 
     const getData = async () => {
         const resp = await fetch("http://localhost:1401/tasks");
@@ -24,11 +26,14 @@ const TaskList = () => {
         <div className="task-list-main">
             <h3 className="task-list-title">Task List</h3>
             <div className="task-list-task-container">
-                {list.map((elem) => {
+                {list.map((elem, idx) => {
+                    // key :: best: unique property on your own, good: index, worst: nothing as key
                     return (
-                        <div>
+                        <div key={idx} className="task-card">
                             <p>{elem.workTitle}</p>
                             <p>{elem.taskTitle}</p>
+                            <p>{elem.assignee}</p>
+                            <p>{elem.assignor}</p>
                         </div>
                     );
                 })}
