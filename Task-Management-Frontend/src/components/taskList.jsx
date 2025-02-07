@@ -7,16 +7,32 @@ import PropTypes from "prop-types";
 const TaskList = ({ list }) => {
     const [editTask, setEditTask] = useState(-1);
     const [editObject, setEditObject] = useState({});
-    console.log("🟡 : editObject:", editObject);
-    console.log("🟡 : editTask:", editTask); // 2
+    // console.log("🟡 : editObject:", editObject);
+    // console.log("🟡 : editTask:", editTask); // 2
 
     const handleEditField = (key, value) => {
-        console.log(key, value);
+        // console.log(key, value);
         setEditObject((prev) => {
             const newObj = { ...prev };
             newObj[key] = value;
             return newObj;
         });
+    };
+
+    const handleEditData = async () => {
+        const resp = await fetch(`http://localhost:1401/tasks/${editObject._id}`, {
+            method: "PATCH",
+            body: JSON.stringify(editObject),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        const respObj = await resp.json();
+        if (respObj.status === "success") {
+            console.log("success :: updated");
+        } else {
+            alert(respObj.message);
+        }
     };
 
     return (
@@ -28,27 +44,33 @@ const TaskList = ({ list }) => {
                     if (editTask === idx) {
                         return (
                             <div key={elem._id} className="task-card">
-                                <form>
-                                    <div>
-                                        <label>Assignee</label>
-                                        <input
-                                            value={elem.assignee}
-                                            onChange={(e) => {
-                                                handleEditField("assignee", e.target.value);
-                                            }}
-                                        />
-                                        {/* controlled  input*/}
-                                    </div>
-                                    <div>
-                                        <label>Priority</label>
-                                        <input
-                                            value={elem.priority}
-                                            onChange={(e) => {
-                                                handleEditField("priority", e.target.value);
-                                            }}
-                                        />
-                                    </div>
-                                </form>
+                                <div>
+                                    <label>Assignee</label>
+                                    <input
+                                        value={editObject.assignee}
+                                        onChange={(e) => {
+                                            handleEditField("assignee", e.target.value);
+                                        }}
+                                    />
+                                    {/* controlled  input*/}
+                                </div>
+                                <div>
+                                    <label>Priority</label>
+                                    <select
+                                        name="priority"
+                                        value={editObject.priority}
+                                        onChange={(e) => {
+                                            handleEditField("priority", e.target.value);
+                                        }}
+                                    >
+                                        <option value="normal">Normal</option>
+                                        <option value="low">Low</option>
+                                        <option value="high">High</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                    {/* controlled  input*/}
+                                </div>
+                                <button onClick={handleEditData}>Submit Changes</button>
                             </div>
                         );
                     } else {
@@ -62,7 +84,14 @@ const TaskList = ({ list }) => {
                                 <p>{elem.deadline}</p>
                                 <p>{elem.priority}</p>
                                 <p>{elem.status}</p>
-                                <button onClick={() => setEditTask(idx)}>Edit</button>
+                                <button
+                                    onClick={() => {
+                                        setEditObject(elem);
+                                        setEditTask(idx);
+                                    }}
+                                >
+                                    Edit
+                                </button>
                             </div>
                         );
                     }
