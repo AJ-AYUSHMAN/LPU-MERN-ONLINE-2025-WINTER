@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 // require("./taskList.css") // CJS
 
 // re-render === re-run the function
-const TaskList = ({ list, getData }) => {
+const TaskList = ({ list, getData, filterObj, title }) => {
+    // HW, TODO : add prop validation
     const [editTask, setEditTask] = useState(-1);
     const [editObject, setEditObject] = useState({});
     // console.log("🟡 : editObject:", editObject);
@@ -55,11 +56,35 @@ const TaskList = ({ list, getData }) => {
         }
     };
 
+    const filteredList = list.filter((elem) => {
+        if (elem.status === filterObj.status) return true;
+        else return false;
+    });
+
+    const handleMarkAsDone = async (taskId) => {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks/${taskId}`, {
+            method: "PATCH",
+            body: JSON.stringify({
+                status: "done",
+            }),
+            headers: {
+                "content-type": "application/json",
+            },
+        });
+        const respObj = await resp.json();
+        if (respObj.status === "success") {
+            console.log("success :: updated");
+            getData();
+        } else {
+            alert(respObj.message);
+        }
+    };
+
     return (
         <div className="task-list-main">
-            <h3 className="task-list-title">Task List</h3>
+            <h3 className="task-list-title">{title}</h3>
             <div className="task-list-task-container">
-                {list.map((elem, idx) => {
+                {filteredList.map((elem, idx) => {
                     // key :: best: unique property on your own, good: index, worst: nothing as key
                     return (
                         <div key={elem._id} className="task-card">
@@ -128,6 +153,13 @@ const TaskList = ({ list, getData }) => {
                                 }}
                             >
                                 Delete
+                            </button>
+                            <button
+                                onClick={() => {
+                                    handleMarkAsDone(elem._id);
+                                }}
+                            >
+                                Mark as Done
                             </button>
                         </div>
                     );

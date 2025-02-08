@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TaskForm from "../components/taskForm";
 import TaskList from "../components/taskList";
 import TaskFilters from "../components/TaskFilters";
+import "./homePage.css";
 
 const HomePage = () => {
     // let list = []; // react does not track the normal variables
@@ -38,7 +39,10 @@ const HomePage = () => {
             <h2>Welcome to Task Management Tool!</h2>
             <TaskForm getData={getData} />
             <TaskFilters setFiltersObj={setFiltersObj} />
-            <TaskList list={list} getData={getData} />
+            <div className="multi-task-lists-container">
+                <TaskList list={list} getData={getData} filterObj={{ status: "todo" }} title="Todo List" />
+                <TaskList list={list} getData={getData} filterObj={{ status: "done" }} title="Done List" />
+            </div>
         </div>
     );
 };
