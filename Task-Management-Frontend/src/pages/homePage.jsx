@@ -6,7 +6,9 @@ import TaskFilters from "../components/TaskFilters";
 const HomePage = () => {
     // let list = []; // react does not track the normal variables
     const [list, setList] = useState([]); // array : length can change, order of elements can change
-    const [filtersObj, setFiltersObj] = useState({});
+    const [filtersObj, setFiltersObj] = useState({
+        priority: "",
+    });
     // A,B,C,D --> 2: C
     // C,A,B,D --> 2: B
     // de-coupling

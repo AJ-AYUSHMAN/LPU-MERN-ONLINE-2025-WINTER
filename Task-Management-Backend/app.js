@@ -14,9 +14,10 @@ app.use(express.json());
 // CUSTOM MIDDLEWARE
 app.use((req, res, next) => {
     console.log("-->", req.method, "-->", req.url);
-    if (req.url.includes("/tasks") && req.method == "DELETE") {
-        res.send("<h1>Terminated for <u>TESTING</u></h1>");
-    } else next();
+    // if (req.url.includes("/tasks") && req.method == "DELETE") {
+    //     res.send("<h1>Terminated for <u>TESTING</u></h1>");
+    // } else next();
+    next();
 }); // order of execution of middlewares is according to order they are written in the file
 
 app.get("/", (req, res) => {

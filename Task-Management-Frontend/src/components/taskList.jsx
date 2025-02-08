@@ -42,6 +42,19 @@ const TaskList = ({ list, getData }) => {
         setEditObject({});
     };
 
+    const handleDelete = async (taskId) => {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks/${taskId}`, {
+            method: "DELETE",
+        });
+        console.log("🟡 : resp:", resp);
+        if (resp.status === 204) {
+            console.log("success :: deleted");
+            getData();
+        } else {
+            alert("Error in delete");
+        }
+    };
+
     return (
         <div className="task-list-main">
             <h3 className="task-list-title">Task List</h3>
@@ -108,6 +121,14 @@ const TaskList = ({ list, getData }) => {
                                     Edit
                                 </button>
                             )}
+
+                            <button
+                                onClick={() => {
+                                    handleDelete(elem._id);
+                                }}
+                            >
+                                Delete
+                            </button>
                         </div>
                     );
                 })}
