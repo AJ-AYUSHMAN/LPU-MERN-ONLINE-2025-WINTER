@@ -12,6 +12,7 @@ const taskSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true,
+            // unique: true, //TODO: between different users, I want the task title to get repeated but not repeated for same user
         },
         assignee: {
             type: String,
