@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 // require("./taskList.css") // CJS
 
 // re-render === re-run the function
-const TaskList = ({ list }) => {
+const TaskList = ({ list, getData }) => {
     const [editTask, setEditTask] = useState(-1);
     const [editObject, setEditObject] = useState({});
     // console.log("🟡 : editObject:", editObject);
@@ -30,9 +30,16 @@ const TaskList = ({ list }) => {
         const respObj = await resp.json();
         if (respObj.status === "success") {
             console.log("success :: updated");
+            handleCancel();
+            getData();
         } else {
             alert(respObj.message);
         }
+    };
+
+    const handleCancel = () => {
+        setEditTask(-1);
+        setEditObject({});
     };
 
     return (
@@ -89,14 +96,7 @@ const TaskList = ({ list }) => {
                             {idx === editTask ? (
                                 <div>
                                     <button onClick={handleEditData}>Submit Changes</button>
-                                    <button
-                                        onClick={() => {
-                                            setEditTask(-1);
-                                            setEditObject({});
-                                        }}
-                                    >
-                                        Cancel
-                                    </button>
+                                    <button onClick={handleCancel}>Cancel</button>
                                 </div>
                             ) : (
                                 <button
@@ -119,6 +119,7 @@ const TaskList = ({ list }) => {
 // https://legacy.reactjs.org/docs/typechecking-with-proptypes.html
 TaskList.propTypes = {
     list: PropTypes.array,
+    getData: PropTypes.func,
 };
 
 export default TaskList;

@@ -28,7 +28,7 @@ const HomePage = () => {
             <h2>Welcome to Task Management Tool!</h2>
             <TaskForm getData={getData} />
             <TaskFilters />
-            <TaskList list={list} />
+            <TaskList list={list} getData={getData} />
         </div>
     );
 };
