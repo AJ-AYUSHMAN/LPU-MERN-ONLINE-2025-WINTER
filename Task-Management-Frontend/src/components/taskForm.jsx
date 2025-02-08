@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const TaskForm = ({ getData }) => {
     const addTask = async (obj) => {
-        const resp = await fetch("http://localhost:1401/tasks", {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks`, {
             method: "POST",
             body: JSON.stringify(obj),
             headers: {

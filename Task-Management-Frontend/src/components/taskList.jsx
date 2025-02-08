@@ -20,7 +20,7 @@ const TaskList = ({ list }) => {
     };
 
     const handleEditData = async () => {
-        const resp = await fetch(`http://localhost:1401/tasks/${editObject._id}`, {
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks/${editObject._id}`, {
             method: "PATCH",
             body: JSON.stringify(editObject),
             headers: {

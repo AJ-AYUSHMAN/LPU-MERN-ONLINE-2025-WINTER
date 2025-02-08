@@ -8,9 +8,10 @@ const HomePage = () => {
     const [list, setList] = useState([]); // array : length can change, order of elements can change
     // A,B,C,D --> 2: C
     // C,A,B,D --> 2: B
+    // de-coupling
 
     const getData = async () => {
-        const resp = await fetch("http://localhost:1401/tasks");
+        const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/tasks`);
         const respBody = await resp.json();
         // list = respBody.data.tasks;
         const arrayOfTaskList = respBody.data.tasks;
