@@ -100,10 +100,27 @@ when we write timestamps true, DB will add the timestamps not the server
 https://upload.wikimedia.org/wikipedia/commons/e/ec/World_Time_Zones_Map.svg
 
 
--------------------
+-------------------------------- --------------------------------
 if you get CORS ERROR 
 
 install this on backend server and use it
 https://www.npmjs.com/package/cors
 
---------------------------------
+-------------------------------- --------------------------------
+-------------------------------- --------------------------------
+One of the reasons: 
+if you want to abstract out the secrets from your code then you use environment variables
+
+https://www.npmjs.com/package/dotenv
+
+1. npm i dotenv
+
+2. make a .env file and mention all your secrets in it as key=value without space
+use-case example --> PORT=1401
+
+3. add this code in * app.js * --> require('dotenv').config()
+## Always put it in the first line (as long as possible)
+### this will save you form many bugs coming in future
+
+4. use-case example --> app.listen(process.end.PORT)
+-------------------------------- --------------------------------

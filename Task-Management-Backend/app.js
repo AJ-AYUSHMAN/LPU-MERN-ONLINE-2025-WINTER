@@ -1,9 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 require("./config/dbConfig.js");
 const Task = require("./models/taskModel.js");
 const cors = require("cors"); // import cors
 
-const PORT = 1401;
+const PORT = process.env.PORT || 2001;
 
 const app = express();
 

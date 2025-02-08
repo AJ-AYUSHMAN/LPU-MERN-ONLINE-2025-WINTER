@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import TaskForm from "../components/taskForm";
 import TaskList from "../components/taskList";
+import TaskFilters from "../components/TaskFilters";
 
 const HomePage = () => {
     // let list = []; // react does not track the normal variables
@@ -25,6 +26,7 @@ const HomePage = () => {
         <div>
             <h2>Welcome to Task Management Tool!</h2>
             <TaskForm getData={getData} />
+            <TaskFilters />
             <TaskList list={list} />
         </div>
     );
